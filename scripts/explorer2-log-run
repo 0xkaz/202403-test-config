@@ -1,0 +1,2 @@
+explorer2-log-run#!/bin/sh
+exec multilog t s1048576 n100 .

@@ -1,0 +1,2 @@
+#!/bin/sh
+cd /weavedb/explorer/; sudo bash -ic "yarn dev"

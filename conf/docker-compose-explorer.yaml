@@ -1,0 +1,12 @@
+version: '3'
+services:
+  explorer:
+    image: weavedb-explorer
+    ports:
+      - 3000:3000
+    environment:
+      - ADDITIONAL_NODE_ENDPOINT=54.151.176.203:8080
+      # - ADDITIONAL_NODE_NETWORK=54.151.176.203
+      # - ADDITIONAL_NODE_KEY=54.151.176.203
+      - ADDITIONAL_NODE_NETWORK=This WeaveDB Node
+      - ADDITIONAL_NODE_KEY=thisnode

@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  node-server:
+    image: weavedb-node-server
+    ports:
+      - "9090:9090"
+      - "4736:4736"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /weavedb/grpc-node/node-server/cache:/weavedb/grpc-node/node-server/cache
+    env_file:
+      - /weavedb/grpc-node/node-server/standalone.env
+  envoy:
+    image: weavedb-envoy
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    environment:
+      - LISTEN_PORT=8080
+      - ADMIN_LISTEN_PORT=9901
+      - SERVICE_DISCOVERY_ADDRESS=node-server
+      - SERVICE_DISCOVERY_PORT=9090
