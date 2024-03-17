@@ -1,0 +1,29 @@
+#!/bin/sh
+# /etc/init.d/svscanboot
+
+### BEGIN INIT INFO
+# Provides:          svscanboot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example service
+# Description:       This service is an example script.
+### END INIT INFO
+
+case "$1" in 
+    start)
+        echo "Starting svscanboot"
+        svscanboot & 
+        ;;
+    stop)
+        echo "Stopping svscanboot"
+        ps axuww | grep svscanboot | grep -v grep | awk '{print $2}' | xargs kill -9
+        ;;
+    *)
+        echo "Usage: /etc/init.d/svscanboot {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
