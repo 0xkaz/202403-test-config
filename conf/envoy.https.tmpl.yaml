@@ -5,11 +5,11 @@ admin:
 
 static_resources:
   listeners:
-    - name: listener_0
-      address:
-        socket_address: { address: 0.0.0.0, port_value: $LISTEN_PORT }
-      filter_chains:
-        - filters:
+  - name: listener_0
+    address:
+      socket_address: { address: 0.0.0.0, port_value: $LISTEN_PORT }
+    filter_chains:
+      - filters:
           - name: envoy.filters.network.http_connection_manager
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
@@ -44,14 +44,17 @@ static_resources:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
-      transport_socket:
-        name: envoy.transport_sockets.tls
-        typed_config:
-          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
-          common_tls_context:
-            tls_certificates:
-              certificate_chain: { filename:"/weavedb/grpc-node/envoy/fullchain.pem" }
-              private_key: { filename: "/weavedb/grpc-node/envoy/privkey.pem" }
+        transport_socket:
+          name: envoy.transport_sockets.tls
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+
+            common_tls_context:
+              tls_certificates:
+                - certificate_chain: 
+                    filename:"/weavedb/grpc-node/envoy/fullchain.pem"
+                  private_key:
+                    filename: "/weavedb/grpc-node/envoy/privkey.pem"
 
 
   clusters:
