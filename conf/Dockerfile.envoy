@@ -4,6 +4,7 @@ RUN apk add zsh vim sed
 RUN mkdir -p /weavedb/grpc-node/envoy
 WORKDIR /weavedb/grpc-node/envoy
 COPY envoy.tmpl.yaml /weavedb/grpc-node/envoy/envoy.tmpl.yaml
+COPY envoy.https.tmpl.yaml /weavedb/grpc-node/envoy/envoy.https.tmpl.yaml
 
 COPY start-envoy.sh /weavedb/grpc-node/envoy/start-envoy.sh
 RUN chmod +x /weavedb/grpc-node/envoy/start-envoy.sh
