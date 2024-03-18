@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+LISTEN_PORT_HTTPS=${LISTEN_PORT_HTTPS:-8080}
+LISTEN_PORT_HTTP=${LISTEN_PORT_HTTP:-8080}
 LISTEN_PORT=${LISTEN_PORT:-8080}
 ADMIN_LISTEN_PORT=${ADMIN_LISTEN_PORT:-9901}
 SERVICE_DISCOVERY_ADDRESS=${SERVICE_DISCOVERY_ADDRESS:-0.0.0.0}
@@ -13,8 +15,10 @@ HTTPS_DOMAIN=${HTTPS_DOMAIN:-test.raas.weavedb-node.xyz}
 
 
 cat /weavedb/grpc-node/envoy/envoy.https.tmpl.yaml | \
-/bin/sed -e "s/\$LISTEN_PORT/$LISTEN_PORT/g" | \
+/bin/sed -e "s/\$LISTEN_PORT_HTTPS/$LISTEN_PORT_HTTPS/g" | \
+/bin/sed -e "s/\$LISTEN_PORT_HTTP/$LISTEN_PORT_HTTP/g" | \
 /bin/sed -e "s/\$ADMIN_LISTEN_PORT/$ADMIN_LISTEN_PORT/g" | \
+/bin/sed -e "s/\$LISTEN_PORT/$LISTEN_PORT/g" | \
 /bin/sed -e "s/\$SERVICE_DISCOVERY_PORT/$SERVICE_DISCOVERY_PORT/g" | \
 /bin/sed -e "s/\$HTTPS_DOMAIN/$HTTPS_DOMAIN/g" | \
 /bin/sed -e "s/\$SERVICE_DISCOVERY_ADDRESS/$SERVICE_DISCOVERY_ADDRESS/g" \
