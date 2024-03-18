@@ -52,9 +52,9 @@ static_resources:
             common_tls_context:
               tls_certificates:
                 - certificate_chain: 
-                    filename:"/weavedb/grpc-node/envoy/fullchain.pem"
+                    filename: "/etc/fullchain.pem"
                   private_key:
-                    filename: "/weavedb/grpc-node/envoy/privkey.pem"
+                    filename: "/etc/privkey.pem"
 
 
   clusters:
