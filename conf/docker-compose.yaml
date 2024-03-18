@@ -17,8 +17,10 @@ services:
     ports:
       - "8080:8080"
       - "9901:9901"
-    environment:
-      - LISTEN_PORT=8080
-      - ADMIN_LISTEN_PORT=9901
-      - SERVICE_DISCOVERY_ADDRESS=node-server
-      - SERVICE_DISCOVERY_PORT=9090
+    # environment:
+    #   - LISTEN_PORT=8080
+    #   - ADMIN_LISTEN_PORT=9901
+    #   - SERVICE_DISCOVERY_ADDRESS=node-server
+    #   - SERVICE_DISCOVERY_PORT=9090
+    env_file:
+      - /weavedb/grpc-node/node-server/standalone.env
