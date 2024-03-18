@@ -72,3 +72,4 @@ static_resources:
                   socket_address:
                     address: $SERVICE_DISCOVERY_ADDRESS
                     port_value: $SERVICE_DISCOVERY_PORT
+  
