@@ -44,7 +44,17 @@ static_resources:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
-
+          transport_socket:
+            name: envoy.transport_sockets.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              common_tls_context:
+                tls_certificates:
+                  - certificate_chain: 
+                      filename: "/etc/fullchain.pem"
+                    private_key:
+                      filename: "/etc/privkey.pem"
+  
     - name: listener_80
       address:
         socket_address: { address: 0.0.0.0, port_value: $LISTEN_PORT_HTTP }
@@ -84,17 +94,7 @@ static_resources:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
-          transport_socket:
-            name: envoy.transport_sockets.tls
-            typed_config:
-              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
-              common_tls_context:
-                tls_certificates:
-                  - certificate_chain: 
-                      filename: "/etc/fullchain.pem"
-                    private_key:
-                      filename: "/etc/privkey.pem"
-  
+
   clusters:
     - name: echo_service
       connect_timeout: 0.25s
