@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  node-server:
+    image: ./node-server
+    ports:
+      - "9090:9090"
+      - "4736:4736"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /rdk/node/cache:/rdk/node/cache
+    env_file:
+      - /rdk/node/standalone.env
+  envoy:
+    image: ./envoy
+    ports:
+      - "8080:8080"
+      - "80:80"
+      - "443:443"
+      - "9901:9901"
+    env_file:
+      - /rdk/node/standalone.env
