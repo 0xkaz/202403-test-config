@@ -1,0 +1,4 @@
+#!/bin/sh
+# cd /root/weavedb/; docker-compose  -f docker-compose.yaml down 
+# sleep 5
+cd /root/weavedb/; docker-compose  -f docker-compose.yaml up
