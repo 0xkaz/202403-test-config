@@ -8,9 +8,18 @@ COPY envoy.https.tmpl.yaml /weavedb/grpc-node/envoy/envoy.https.tmpl.yaml
 
 COPY fullchain.pem /weavedb/grpc-node/envoy/fullchain.pem
 COPY privkey.pem /weavedb/grpc-node/envoy/privkey.pem
+COPY fullchain.pem /etc/fullchain.pem
+COPY privkey.pem /etc/privkey.pem
+RUN chmod 644 /etc/fullchain.pem
+RUN chmod 644 /etc/privkey.pem
 
 
 COPY start-envoy.sh /weavedb/grpc-node/envoy/start-envoy.sh
 RUN chmod +x /weavedb/grpc-node/envoy/start-envoy.sh
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
+EXPOSE 9901
 
 ENTRYPOINT ["/weavedb/grpc-node/envoy/start-envoy.sh"]
