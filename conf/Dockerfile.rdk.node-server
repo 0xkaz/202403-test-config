@@ -1,0 +1,12 @@
+FROM amd64/node:18.19-alpine
+RUN apk add --no-cache git
+
+COPY ./ /rdk/node/node-server
+COPY ./weavedb.config.tmpl.js /rdk/node/node-server/weavedb.config.tmpl.js
+COPY ./weavedb.config.tmpl.js /rdk/node/node-server/weavedb.config.tmpl.js
+WORKDIR /rdk/node/node-server
+RUN yarn
+EXPOSE 9090
+RUN chmod +x /rdk/node/node-server/*.sh
+RUN /rdk/node/node-server/setup-rdk-config.sh
+CMD ["yarn", "pm2", "start", "index.js", "--no-daemon"]

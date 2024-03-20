@@ -15,7 +15,7 @@ BUNDLER_DP=${BUNDLER_DP}
 BUNDLER_DQ=${BUNDLER_DQ}
 BUNDLER_QI=${BUNDLER_QI}
 
-cat /tmp/weavedb.config.tmpl.js | \
+cat /rdk/node/node-server/weavedb.config.tmpl.js | \
 /bin/sed -e "s/\$ADMIN_PRIVATE_KEY/$ADMIN_PRIVATE_KEY/g" |  \
 /bin/sed -e "s/\$BUNDLER_KTY/$BUNDLER_KTY/g" |  \
 /bin/sed -e "s/\$BUNDLER_N/$BUNDLER_N/g" | \
