@@ -2,7 +2,9 @@ version: "3"
 
 services:
   node-server:
-    image: ./node-server
+    build:
+      context: ./node-server
+
     ports:
       - "9090:9090"
       - "4736:4736"
@@ -13,7 +15,7 @@ services:
     env_file:
       - /rdk/node/standalone.env
   envoy:
-    image: ./envoy
+    build: ./envoy
     ports:
       - "8080:8080"
       - "80:80"

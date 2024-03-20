@@ -1,3 +1,4 @@
 #!/bin/sh
 
-cd /rdk/; sudo bash -ic "yarn run-rollup"
+# cd /rdk/; sudo bash -ic "yarn run-rollup"
+cd /rdk; sudo bash -ic "cd /rdk/ && yarn run-rollup"
