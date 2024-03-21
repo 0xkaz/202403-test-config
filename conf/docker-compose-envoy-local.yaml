@@ -1,0 +1,14 @@
+version: '3'
+services:
+  envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile.envoy-local
+    ports:
+      - "443:443"
+      - "80:80"
+      - "8080:8080"
+      - "9901:9901"
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

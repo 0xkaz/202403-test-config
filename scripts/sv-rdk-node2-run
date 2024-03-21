@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# cd /rdk/; sudo bash -ic "yarn run-rollup"
+cd /rdk/node/node-server; sudo bash -ic "cd /rdk/node/node-server && yarn && node index.js"
