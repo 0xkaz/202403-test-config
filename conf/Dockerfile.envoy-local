@@ -2,4 +2,18 @@ FROM envoyproxy/envoy-alpine:v1.21.6
 RUN apk add vim zsh curl
 COPY envoy-local.yaml /etc/envoy/envoy-local.yaml
 
+
+COPY fullchain.pem /rdk/node/envoy/fullchain.pem
+COPY privkey.pem /rdk/node/envoy/privkey.pem
+COPY fullchain.pem /etc/fullchain.pem
+COPY privkey.pem /etc/privkey.pem
+RUN chmod 644 /etc/fullchain.pem
+RUN chmod 644 /etc/privkey.pem
+
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
+EXPOSE 9901
+
 CMD ["/usr/local/bin/envoy", "-c /etc/envoy/envoy-local.yaml" ]
