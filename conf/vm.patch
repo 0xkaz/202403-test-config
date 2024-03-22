@@ -1,0 +1,16 @@
+--- node/node-server/vm.js.bak	2024-03-22 16:17:14
++++ node/node-server/vm.js	2024-03-22 20:19:57
+@@ -278,11 +278,9 @@
+                     bundler: "lry5KMRj6j13sLHsKxs1D2joLjcj6yNHtNQQQoaHRug",
+                     nostr: "PDuTzRpn99EwiUvT9XrUhg8nyhW20Wcd-XcRXboCpHs",
+                   }
++                  console.log("_arweave", _arweave)
+                   res = await warp.createContract.deployFromSourceTx({
+-                    wallet:
+-                      _arweave.host === "localhost"
+-                        ? this.conf.bundler
+-                        : new ArweaveSigner(this.conf.bundler),
++                    wallet: new ArweaveSigner(this.conf.bundler),
+                     initState: JSON.stringify(initialState),
+                     srcTxId,
+                     evaluationManifest: {
