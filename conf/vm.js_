@@ -13,8 +13,6 @@ const {
   is,
 } = require("ramda")
 
-
-
 const { privateToAddress } = require("ethereumjs-util")
 const path = require("path")
 const { fork } = require("child_process")
@@ -281,7 +279,7 @@ class VM {
                     nostr: "PDuTzRpn99EwiUvT9XrUhg8nyhW20Wcd-XcRXboCpHs",
                   }
                   console.log("_arweave", _arweave)
-                  res = await warp.deployFromSourceTx({
+                  res = await warp.createContract.deployFromSourceTx({
                     wallet: new ArweaveSigner(this.conf.bundler),
                     initState: JSON.stringify(initialState),
                     srcTxId,
@@ -295,7 +293,7 @@ class VM {
                   })
                 } catch (e) {
                   err = e
-                  console.log("deploy_contract CATCH ERR",e)
+                  console.log(e)
                 }
                 if (isNil(res?.contractTxId) || !isNil(err)) {
                   callback(null, {
